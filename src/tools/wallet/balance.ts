@@ -5,7 +5,7 @@
 import { z } from "zod";
 import { formatUnits } from "viem";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
-import { publicClient } from "../config/server";
+import { publicClient } from "../../config/server";
 
 /**
  * Register the balance tool with the MCP server

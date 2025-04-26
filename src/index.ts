@@ -6,12 +6,11 @@
  */
 
 import { createServer, initializeTransport } from "./config/server";
-import { registerBalanceTool } from "./tools/balance";
-import { registerTransactionTool } from "./tools/transaction";
 import { registerDeployTool } from "./tools/deploy";
 import { registerEventTool } from "./tools/events";
 import { registerNftTool } from "./tools/nft/register";
 import { registerBlockTool } from "./tools/block/register";
+import { registerWalletTool } from "./tools/wallet/register";
 
 /**
  * Main function to start the MCP server
@@ -23,8 +22,7 @@ async function main() {
         const server = createServer();
 
         // Register available tools
-        registerBalanceTool(server);
-        registerTransactionTool(server);
+        registerWalletTool(server);
         registerDeployTool(server);
         registerEventTool(server);
         registerNftTool(server);

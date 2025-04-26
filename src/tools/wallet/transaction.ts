@@ -5,7 +5,7 @@
 import { z } from "zod";
 import { parseEther } from "viem";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
-import { createWallet } from "../config/server";
+import { createWallet } from "../../config/server";
 
 /**
  * Register the transaction tool with the MCP server
