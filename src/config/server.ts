@@ -22,7 +22,7 @@ export const publicClient = createPublicClient({
 export function createServer() {
   return new McpServer({
     name: "monad-testnet",
-    version: "0.0.1",
+    version: "1.0.0",
     capabilities: [
       "get-mon-balance",
       "send-mon-transaction",
@@ -30,6 +30,7 @@ export function createServer() {
       "watch-contract-events",
       "query-mon-nft",
       "get-latest-block",
+      "get-block-by-number",
     ],
   });
 }
