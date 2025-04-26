@@ -51,7 +51,10 @@ The server is now ready to use!
       "command": "node",
       "args": [
         "/<path-to-project>/build/index.js"
-      ]
+      ],
+      "env": {
+        "PRIVATE_KEY": "<your private key>"
+      }
     }
   }
 }

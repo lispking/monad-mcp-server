@@ -10,7 +10,7 @@ import { publicClient } from "../../config/server";
 /**
  * Register the balance tool with the MCP server
  */
-export function registerBalanceTool(server: McpServer) {
+export function balanceProvider(server: McpServer) {
     server.tool(
         "get-mon-balance",
         "Get MON balance for an address on Monad testnet",

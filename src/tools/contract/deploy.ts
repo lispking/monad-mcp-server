@@ -4,12 +4,12 @@
 
 import { z } from "zod";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
-import { createWallet } from '../config/server';
+import { createWallet } from '../../config/server';
 
 /**
  * Register the contract deployment tool with the MCP server
  */
-export function registerDeployTool(server: McpServer) {
+export function deployContractProvider(server: McpServer) {
     server.tool(
         "deploy-mon-contract",
         "Deploy a smart contract on Monad testnet",

@@ -6,11 +6,10 @@
  */
 
 import { createServer, initializeTransport } from "./config/server";
-import { registerDeployTool } from "./tools/deploy";
-import { registerEventTool } from "./tools/events";
-import { registerNftTool } from "./tools/nft/register";
-import { registerBlockTool } from "./tools/block/register";
-import { registerWalletTool } from "./tools/wallet/register";
+import { nftProvider } from "./tools/nft";
+import { blockProvider } from "./tools/block";
+import { walletProvider } from "./tools/wallet";
+import { contractProvider } from "./tools/contract";
 
 /**
  * Main function to start the MCP server
@@ -22,11 +21,10 @@ async function main() {
         const server = createServer();
 
         // Register available tools
-        registerWalletTool(server);
-        registerDeployTool(server);
-        registerEventTool(server);
-        registerNftTool(server);
-        registerBlockTool(server);
+        walletProvider(server);
+        contractProvider(server);
+        nftProvider(server);
+        blockProvider(server);
 
         // Initialize transport layer
         await initializeTransport(server);

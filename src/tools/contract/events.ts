@@ -5,12 +5,12 @@
 import { z } from "zod";
 import { parseAbiItem } from "viem";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
-import { publicClient } from "../config/server";
+import { publicClient } from "../../config/server";
 
 /**
  * Register the event listener tool with the MCP server
  */
-export function registerEventTool(server: McpServer) {
+export function contractEventProvider(server: McpServer) {
     server.tool(
         "watch-contract-events",
         "Watch for smart contract events on Monad testnet",

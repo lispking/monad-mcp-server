@@ -7,7 +7,7 @@ import { createPublicClient, createWalletClient, http } from "viem";
 import { monadTestnet } from "viem/chains";
 import { privateKeyToAccount } from 'viem/accounts';
 
-import dotenv from 'dotenv';
+import * as dotenv from 'dotenv';
 dotenv.config();
 
 // Create a public client to interact with the Monad testnet

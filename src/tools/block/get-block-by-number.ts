@@ -9,7 +9,7 @@ import { z } from "zod";
 /**
  * Register the get block by number tool with the MCP server
  */
-export function registerGetBlockByNumberTool(server: McpServer) {
+export function getBlockByNumberProvider(server: McpServer) {
     server.tool(
         "get-block-by-number",
         "Get a block by number on Monad testnet",

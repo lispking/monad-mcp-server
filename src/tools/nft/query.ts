@@ -16,7 +16,7 @@ const ERC721_ABI = parseAbi([
 /**
  * Register the NFT query tool with the MCP server
  */
-export function registerQueryNftTool(server: McpServer) {
+export function nftQueryProvider(server: McpServer) {
     server.tool(
         "query-mon-nft",
         "Query NFT information on Monad testnet",

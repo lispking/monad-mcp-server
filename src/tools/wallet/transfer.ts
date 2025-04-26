@@ -10,7 +10,7 @@ import { createWallet } from "../../config/server";
 /**
  * Register the transaction tool with the MCP server
  */
-export function registerTransactionTool(server: McpServer) {
+export function sendMonProvider(server: McpServer) {
     server.tool(
         "send-mon-transaction",
         "Send MON transaction on Monad testnet",

@@ -8,7 +8,7 @@ import { publicClient } from "../../config/server";
 /**
  * Register the latest block tool with the MCP server
  */
-export function registerLatestBlockTool(server: McpServer) {
+export function getLatestBlockProvider(server: McpServer) {
     server.tool(
         "get-latest-block",
         "Get the latest block on Monad testnet",
