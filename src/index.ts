@@ -1,79 +1,42 @@
 /**
- * Monad MCP Tutorial
+ * Monad MCP Server Entry Point
  * 
- * This file demonstrates how to create a Model Context Protocol (MCP) server
- * that interacts with the Monad blockchain testnet to check MON balances.
+ * This file serves as the main entry point for the Monad MCP server,
+ * orchestrating the initialization of server components and tools.
  */
 
-// Import necessary dependencies
-import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
-import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
-import { z } from "zod";
-import { createPublicClient, formatUnits, http } from "viem";
-import { monadTestnet } from "viem/chains";
-
-// Create a public client to interact with the Monad testnet
-const publicClient = createPublicClient({
-    chain: monadTestnet,
-    transport: http(),
-});
-
-// Initialize the MCP server with a name, version, and capabilities
-const server = new McpServer({
-    name: "monad-testnet",
-    version: "0.0.1",
-    capabilities: ["get-mon-balance"]
-});
-
-// Define a tool that gets the MON balance for a given address
-server.tool(
-    "get-mon-balance",
-    "Get MON balance for an address on Monad testnet",
-    {
-        address: z.string().describe("Monad testnet address to check balance for"),
-    },
-    async ({ address }) => {
-        try {
-            const balance = await publicClient.getBalance({
-                address: address as `0x${string}`,
-            });
-            return {
-                content: [
-                    {
-                        type: "text",
-                        text: `Balance for ${address}: ${formatUnits(balance, 18)} MON`,
-                    },
-                ],
-            };
-        } catch (error) {
-            return {
-                content: [
-                    {
-                        type: "text",
-                        text: `Failed to retrieve balance for address: ${address}. Error: ${error instanceof Error ? error.message : String(error)}`,
-                    },
-                ],
-            };
-        }
-    }
-);
+import { createServer, initializeTransport } from "./config/server";
+import { registerBalanceTool } from "./tools/balance";
+import { registerTransactionTool } from "./tools/transaction";
+import { registerDeployTool } from "./tools/deploy";
+import { registerEventTool } from "./tools/events";
+import { registerNftTool } from "./tools/nft/register";
+import { registerBlockTool } from "./tools/block/register";
 
 /**
  * Main function to start the MCP server
- * Uses stdio for communication with LLM clients
+ * Initializes server configuration and registers available tools
  */
 async function main() {
-    // Create a transport layer using standard input/output
-    const transport = new StdioServerTransport();
-    
-    // Connect the server to the transport
-    await server.connect(transport);
-    
-    console.error("Monad testnet MCP Server running on stdio");
+    try {
+        // Create and configure the server
+        const server = createServer();
+
+        // Register available tools
+        registerBalanceTool(server);
+        registerTransactionTool(server);
+        registerDeployTool(server);
+        registerEventTool(server);
+        registerNftTool(server);
+        registerBlockTool(server);
+
+        // Initialize transport layer
+        await initializeTransport(server);
+    } catch (error) {
+        console.error("Fatal error in main():", error);
+        process.exit(1);
+    }
 }
 
-// Start the server and handle any fatal errors
-main().catch((error) => {
-    console.error("Fatal error in main():", error);
-    process.exit(1);
-});
+// Start the server
+main();
