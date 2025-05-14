@@ -2,6 +2,10 @@
 
 This MCP (Model Context Protocol) server is designed to interact with the Monad testnet. It provides a suite of tools and capabilities for developers to engage with the Monad blockchain, including checking MON token balances, sending transactions, deploying smart contracts, and monitoring blockchain events.
 
+<a href="https://glama.ai/mcp/servers/@lispking/monad-mcp-server">
+  <img width="380" height="200" src="https://glama.ai/mcp/servers/@lispking/monad-mcp-server/badge" alt="Monad Server MCP server" />
+</a>
+
 ## What is MCP?
 
 The Model Context Protocol (MCP) is a standardized interface that enables AI models to securely and effectively interact with external tools, services, and data sources. This server implements MCP to expose Monad blockchain functionalities to compatible AI agents or applications.
@@ -150,4 +154,3 @@ For more detailed information on the technologies used and concepts involved, re
 *   [Viem Documentation](https://viem.sh/) (Viem is the Ethereum/Monad client library used in this project)
 
 This comprehensive README should provide a solid understanding of the Monad MCP Server, its setup, and usage.
-
